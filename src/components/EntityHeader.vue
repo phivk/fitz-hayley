@@ -58,8 +58,8 @@ export default {
   props: {
     type: { type: String, default: "" },
     title: { type: String, default: "" },
-    metadataHead: { type: Object, default: {} },
-    metadataTail: { type: Object, default: {} },
+    metadataHead: { type: Object, default: () => {} },
+    metadataTail: { type: Object, default: () => {} },
     numberLetters: { type: Number, default: 0 },
     biographicalText: { type: String, default: "" },
     bgImageSrc: { type: String }
