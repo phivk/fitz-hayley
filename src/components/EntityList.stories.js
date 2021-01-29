@@ -1,136 +1,71 @@
 import EntityList from "./EntityList.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
-
 import imageFlaxman from "../images/flaxman.jpg";
 import imageSussex from "../images/sussex-place.jpg";
 
-export default { title: "EntityList" };
+export default {
+  title: 'EntityList',
+  component: EntityList,
+};
 
-export const regular = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { EntityList },
-  data: function() {
-    return {
-      bgImagePerson: imageFlaxman,
-      bgImagePlace: imageSussex,
-      entities: [
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#"
-        },
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#"
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#",
-          bgImageSrc: imageSussex
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#"
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#",
-          bgImageSrc: imageSussex
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#"
-        }
-      ]
-    };
-  },
-  template: `
-    <div class="pa3">
-      <EntityList 
-        :entities='entities'
-      />
-    </div>
-    `
+  template:
+    '<entity-list v-bind="$props" />',
 });
 
-export const filtered = () => ({
-  components: { EntityList },
-  data: function() {
-    return {
-      typeFilter: "Person",
-      bgImagePerson: imageFlaxman,
-      bgImagePlace: imageSussex,
-      entities: [
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#"
-        },
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          title: "Firstname Lastname",
-          linkPath: "#"
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#",
-          bgImageSrc: imageSussex
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#"
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#",
-          bgImageSrc: imageSussex
-        },
-        {
-          type: "Place",
-          title: "Place Name",
-          linkPath: "#"
-        }
-      ]
-    };
-  },
-  template: `
-    <div class="pa3">
-      <EntityList 
-        :entities='entities'
-        :typeFilter='typeFilter'
-      />
-    </div>
-    `
-});
+export const Regular = Template.bind({});
+Regular.args = {
+  entities: [
+    {
+      type: "Person",
+      title: "Firstname Lastname",
+      linkPath: "#",
+      bgImageSrc: imageFlaxman
+    },
+    {
+      type: "Person",
+      title: "Firstname Lastname",
+      linkPath: "#"
+    },
+    {
+      type: "Person",
+      title: "Firstname Lastname",
+      linkPath: "#",
+      bgImageSrc: imageFlaxman
+    },
+    {
+      type: "Person",
+      title: "Firstname Lastname",
+      linkPath: "#"
+    },
+    {
+      type: "Place",
+      title: "Place Name",
+      linkPath: "#",
+      bgImageSrc: imageSussex
+    },
+    {
+      type: "Place",
+      title: "Place Name",
+      linkPath: "#"
+    },
+    {
+      type: "Place",
+      title: "Place Name",
+      linkPath: "#",
+      bgImageSrc: imageSussex
+    },
+    {
+      type: "Place",
+      title: "Place Name",
+      linkPath: "#"
+    }
+  ]
+};
+
+export const Filtered = Template.bind({});
+Filtered.args = {
+  ...Regular.args,
+  typeFilter: "Person",
+};

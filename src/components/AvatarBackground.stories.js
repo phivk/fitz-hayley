@@ -1,120 +1,68 @@
 import AvatarBackground from "./AvatarBackground.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 
 import imageFlaxman from "../images/flaxman.jpg";
 import imageHayley from "../images/hayley.jpg";
 import imageBlake from "../images/blake.jpg";
 import imageSussex from "../images/sussex-place.jpg";
 
-export default { title: "AvatarBackground" };
+export default {
+  title: 'AvatarBackground',
+  component: AvatarBackground,
+};
 
-export const regular = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { AvatarBackground },
-  data: function() {
-    return {
-      avatars: [
-        {
-          type: "Person",
-          bgImageSrc: imageHayley
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageBlake
-        },
-        {
-          type: "Place",
-          bgImageSrc: imageSussex
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageHayley
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageBlake
-        },
-        {
-          type: "Place",
-          bgImageSrc: imageSussex
-        }
-      ],
-      excludeZoneRatios: {
-        minX: 0.2,
-        maxX: 0.8,
-        minY: 0.2,
-        maxY: 0.8
-      }
-    };
-  },
-  template: `
-    <AvatarBackground 
-      :avatars='avatars'
-      :excludeZoneRatios='excludeZoneRatios'
-    />
-    `
+  template:
+    '<avatar-background v-bind="$props" />',
 });
 
-export const showExclusionZone = () => ({
-  components: { AvatarBackground },
-  data: function() {
-    return {
-      avatars: [
-        {
-          type: "Person",
-          bgImageSrc: imageHayley
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageBlake
-        },
-        {
-          type: "Place",
-          bgImageSrc: imageSussex
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageHayley
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageFlaxman
-        },
-        {
-          type: "Person",
-          bgImageSrc: imageBlake
-        },
-        {
-          type: "Place",
-          bgImageSrc: imageSussex
-        }
-      ],
-      excludeZoneRatios: {
-        minX: 0.2,
-        maxX: 0.8,
-        minY: 0.2,
-        maxY: 0.8
-      },
-      showExclusionZone: true
-    };
-  },
-  template: `
-    <AvatarBackground 
-      :avatars='avatars'
-      :excludeZoneRatios='excludeZoneRatios'
-      :showExclusionZone='showExclusionZone'
-    />
-    `
-});
+export const Regular = Template.bind({});
+Regular.args = {
+  avatars: [
+    {
+      type: "Person",
+      bgImageSrc: imageHayley
+    },
+    {
+      type: "Person",
+      bgImageSrc: imageFlaxman
+    },
+    {
+      type: "Person",
+      bgImageSrc: imageBlake
+    },
+    {
+      type: "Place",
+      bgImageSrc: imageSussex
+    },
+    {
+      type: "Person",
+      bgImageSrc: imageHayley
+    },
+    {
+      type: "Person",
+      bgImageSrc: imageFlaxman
+    },
+    {
+      type: "Person",
+      bgImageSrc: imageBlake
+    },
+    {
+      type: "Place",
+      bgImageSrc: imageSussex
+    }
+  ],
+  excludeZoneRatios: {
+    minX: 0.2,
+    maxX: 0.8,
+    minY: 0.2,
+    maxY: 0.8
+  }
+};
+
+export const ShowExclusionZone = Template.bind({});
+ShowExclusionZone.args = {
+  ...Regular.args,
+  showExclusionZone: true,
+};

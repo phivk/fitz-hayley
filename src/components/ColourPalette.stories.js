@@ -1,14 +1,16 @@
 import ColourPalette from "./ColourPalette.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 
-export default { title: "ColourPalette" };
+export default {
+  title: 'Utils/ColourPalette',
+  component: ColourPalette,
+};
 
-export const regular = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { ColourPalette },
-  template: `
-    <div class="pa3">
-      <ColourPalette/>
-    </div>
-    `
+  template:
+    '<colour-palette v-bind="$props" />',
 });
+
+export const Regular = Template.bind({});
+Regular.args = {};

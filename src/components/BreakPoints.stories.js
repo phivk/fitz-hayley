@@ -1,17 +1,16 @@
 import BreakPoints from "./BreakPoints.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 
-export default { title: "BreakPoints" };
+export default {
+  title: 'Utils/BreakPoints',
+  component: BreakPoints,
+};
 
-export const regular = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { BreakPoints },
-  data: function() {
-    return {};
-  },
-  template: `
-    <div class="pa3">
-      <BreakPoints/>
-    </div>
-    `
+  template:
+    '<break-points v-bind="$props" />',
 });
+
+export const Regular = Template.bind({});
+Regular.args = {};

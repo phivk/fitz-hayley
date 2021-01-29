@@ -1,70 +1,41 @@
 import EntityCard from "./EntityCard";
-import "../css/reset.css";
-import "../css/global-styles.scss";
-
 import imageFlaxman from "../images/flaxman.jpg";
 import imageSussex from "../images/sussex-place.jpg";
 
 export default {
-  title: "EntityCard"
+  title: 'EntityCard',
+  component: EntityCard,
 };
 
-export const person = () => ({
-  components: { "entity-card": EntityCard },
-  data: function() {
-    return {
-      bgImage: imageFlaxman
-    };
-  },
-  template: `
-    <div class="pa3">
-      <entity-card 
-        type="Person" 
-        title="Firstname Lastname" 
-        :bgImageSrc="bgImage"
-      />
-    </div>
-    `
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { EntityCard },
+  template:
+    '<entity-card v-bind="$props" />',
 });
 
-export const personWithoutImage = () => ({
-  components: { "entity-card": EntityCard },
-  template: `
-    <div class="pa3">
-      <entity-card 
-        type="Person" 
-        title="Firstname Lastname" 
-      />
-    </div>
-    `
-});
+export const Person = Template.bind({});
+Person.args = {
+  bgImageSrc: imageFlaxman,
+  type: "Person",
+  title: "Firstname Lastname",
+};
 
-export const place = () => ({
-  components: { "entity-card": EntityCard },
-  data: function() {
-    return {
-      bgImage: imageSussex
-    };
-  },
-  template: `
-    <div class="pa3">
-      <entity-card 
-        type="Place" 
-        title="Location Name" 
-        :bgImageSrc="bgImage"
-      />
-    </div>
-    `
-});
+export const PersonWithoutImage = Template.bind({});
+PersonWithoutImage.args = {
+  type: "Person",
+  title: "Firstname Lastname",
+};
 
-export const placeWithoutImage = () => ({
-  components: { "entity-card": EntityCard },
-  template: `
-    <div class="pa3">
-      <entity-card 
-        type="Place" 
-        title="Location Name" 
-      />
-    </div>
-    `
-});
+export const Place = Template.bind({});
+Place.args = {
+  bgImageSrc: imageSussex,
+  type: "Place",
+  title: "Location Name",
+};
+
+export const PlaceWithoutImage = Template.bind({});
+PlaceWithoutImage.args = {
+  type: "Place",
+  title: "Location Name",
+};

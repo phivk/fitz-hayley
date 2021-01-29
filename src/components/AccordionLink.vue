@@ -11,9 +11,13 @@
 export default {
   name: "AccordionLink",
   props: {
-    showText: { type: String },
-    hideText: { type: String },
-    isExpanded: { type: Boolean }
-  }
+    showText: { type: String, default: "Show more" },
+    hideText: { type: String, default: "Show less" },
+  },
+  data: function() {
+    return {
+      isExpanded: false,
+    };
+  },
 };
 </script>

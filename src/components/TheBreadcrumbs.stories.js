@@ -1,46 +1,34 @@
 import TheBreadcrumbs from "./TheBreadcrumbs.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 
-export default { title: "TheBreadcrumbs" };
+export default {
+  title: 'TheBreadcrumbs',
+  component: TheBreadcrumbs,
+};
 
-export const fromPathList = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { TheBreadcrumbs },
-  data: function() {
-    return {
-      pathList: [
-        {
-          text: "First",
-          path: "/first"
-        },
-        {
-          text: "Second",
-          path: "/first/second"
-        },
-        {
-          text: "Third",
-          path: "/first/second/third"
-        }
-      ]
-    };
-  },
-  template: `
-    <div class="pa4">
-      <TheBreadcrumbs 
-        :pathList='pathList' 
-      />
-    </div>
-    `
+  template:
+    '<the-breadcrumbs v-bind="$props" />',
 });
 
-export const fromWindowLocation = () => ({
-  components: { TheBreadcrumbs },
-  data: function() {
-    return {};
-  },
-  template: `
-    <div class="pa4">
-      <TheBreadcrumbs/>
-    </div>
-    `
-});
+export const FromPathList = Template.bind({});
+FromPathList.args = {
+  pathList: [
+    {
+      text: "First",
+      path: "/first"
+    },
+    {
+      text: "Second",
+      path: "/first/second"
+    },
+    {
+      text: "Third",
+      path: "/first/second/third"
+    }
+  ]
+};
+
+export const FromWindowLocation = Template.bind({});
+FromWindowLocation.args = {};

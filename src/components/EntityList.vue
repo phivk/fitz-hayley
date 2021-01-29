@@ -1,14 +1,14 @@
 <template>
-  <senction class="entity-list">
+  <section class="entity-list">
     <EntityCard
-      v-for="entity in entitiesFiltered"
-      :key="entity.title"
+      v-for="(entity, index) in entitiesFiltered"
+      :key="index"
       :type="entity.type"
       :title="entity.title"
       :bgImageSrc="entity.bgImageSrc"
       class="mb3"
     />
-  </senction>
+  </section>
 </template>
 
 <script>

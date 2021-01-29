@@ -1,33 +1,25 @@
 import Button from "./Button.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 
-export default { title: "Button" };
+export default {
+  title: 'Button',
+  component: Button,
+};
 
-export const regular = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { Button },
-  data: function() {
-    return {
-      handleClick: function() {
-        alert("You clicked the button");
-      }
-    };
-  },
-  template: `
-    <Button :onClick="handleClick">Button text</Button>
-    `
+  template:
+    '<Button v-bind="$props">{{slotContent}}</Button>',
 });
 
-export const square = () => ({
-  components: { Button },
-  data: function() {
-    return {
-      handleClick: function() {
-        alert("You clicked the button");
-      }
-    };
-  },
-  template: `
-    <Button square :onClick="handleClick">+</Button>
-    `
-});
+export const Regular = Template.bind({});
+Regular.args = {
+  slotContent: "Button text",
+
+};
+
+export const Square = Template.bind({});
+Square.args = {
+  slotContent: "+",
+  square: true,
+};

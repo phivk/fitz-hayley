@@ -1,17 +1,19 @@
 import ButtonLink from "./ButtonLink.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 
-export default { title: "ButtonLink" };
+export default {
+  title: 'ButtonLink',
+  component: ButtonLink,
+};
 
-export const regular = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { ButtonLink },
-  data: function() {
-    return {
-      link: "https://en.wikipedia.org/wiki/William_Hayley"
-    };
-  },
-  template: `
-    <ButtonLink :link="link">Discover the letters</ButtonLink>
-    `
+  template:
+    '<button-link v-bind="$props">{{slotContent}}</button-link>',
 });
+
+export const Regular = Template.bind({});
+Regular.args = {
+  link: "https://en.wikipedia.org/wiki/William_Hayley",
+  slotContent: "Discover the letters",
+};

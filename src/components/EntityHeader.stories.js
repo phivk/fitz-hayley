@@ -1,84 +1,52 @@
 import EntityHeader from "./EntityHeader.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
-
 import imageFlaxman from "../images/flaxman.jpg";
 import imageSussex from "../images/sussex-place.jpg";
 
-export default { title: "EntityHeader" };
+export default {
+  title: 'EntityHeader',
+  component: EntityHeader,
+};
 
-export const person = () => ({
-  components: {
-    EntityHeader
-  },
-  data: function() {
-    return {
-      type: "person",
-      title: "Flaxman, John (Jnr)",
-      firstName: "John",
-      lastName: "Flaxman",
-      titleAristocrats: "Sir",
-      birthDate: "1755-07-06",
-      deathDate: "1826-12-07",
-      birthPlace: "Amsterdam",
-      deathPlace: "NYC",
-      occupation: "sculptor",
-      nickname: "The Flax",
-      biographicalText:
-        "John Flaxman RA (6 July 1755 – 7 December 1826) was a British sculptor and draughtsman, and a leading figure in British and European Neoclassicism. Early in his career he worked as a modeller for Josiah Wedgwood's pottery. He spent several years in Rome, where he produced his first book illustrations. He was a prolific maker of funerary monuments.",
-      bibliography: "Example Bibliography",
-      relationToHayley: "Friend of",
-      numberLetters: 7
-    };
-  },
-  template: `<EntityHeader 
-      :type='type' 
-      :title='title' 
-      :metadataHead='{
-        "Birth Date": birthDate,
-        "Death Date": deathDate,
-        "Birth Place": birthPlace,
-        "Death Place": deathPlace,
-        "Occupation": occupation,
-        "Nickname": nickname,
-        "Relation To Hayley": relationToHayley,
-      }' 
-      :metadataTail='{
-        "First Name": firstName,
-        "Last Name": lastName,
-        "Title Aristocrats": titleAristocrats,
-        "Bibliography": bibliography,
-      }'
-      :numberLetters='numberLetters' 
-      :bodyText='biographicalText'
-    />`
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { EntityHeader },
+  template:
+    '<entity-header v-bind="$props" />',
 });
 
-export const place = () => ({
-  components: {
-    EntityHeader
+export const Person = Template.bind({});
+Person.args = {
+  type: "person",
+  title: "Flaxman, John (Jnr)",
+  metadataHead: {
+    'Birth Date': "1755-07-06",
+    'Death Date': "1826-12-07",
+    'Birth Place': "Amsterdam",
+    'Death Place': "NYC",
+    'Occupation': "sculptor",
+    'Nickname': "The Flax",
+    "Relation To Hayley": "Friend of",
+  }, 
+  metadataTail: {
+    "First Name": "John",
+    "Last Name": "Flaxman",
+    "Title Aristocrats": "Sir",
+    "Bibliography": "Example Bibliography",
   },
-  data: function() {
-    return {
-      type: "place",
-      title: "Buxton, Derbyshire",
-      latitude: "53.259082",
-      longitude: "-1.91483",
-      addressToday: "Buxton, Derbyshire SK17, UK",
-      description: "Town in Derbyshire. Home to Mrs Gladwin",
-      numberLetters: 3
-    };
+  numberLetters: 7, 
+  bodyText: "John Flaxman RA (6 July 1755 – 7 December 1826) was a British sculptor and draughtsman, and a leading figure in British and European Neoclassicism. Early in his career he worked as a modeller for Josiah Wedgwood's pottery. He spent several years in Rome, where he produced his first book illustrations. He was a prolific maker of funerary monuments.",
+};
+
+export const Place = Template.bind({});
+Place.args = {
+  type: "place",
+  title: "Buxton, Derbyshire",
+  metadataHead: {
+    "Latitude": "53.259082",
+    "Longitude": "-1.91483",
+    "Address Today": "Buxton, Derbyshire SK17, UK",
   },
-  template: `<EntityHeader 
-      :type='type' 
-      :title='title' 
-      :metadataHead='{
-        "Latitude": latitude,
-        "Longitude": longitude,
-        "Address Today": addressToday,
-      }' 
-      :metadataTail='{}'
-      :numberLetters='numberLetters' 
-      :bodyText='description'
-    />`
-});
+  metadataTail: {},
+  numberLetters: 3,
+  bodyText:  "Town in Derbyshire. Home to Mrs Gladwin",
+};

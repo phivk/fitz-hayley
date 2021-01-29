@@ -1,6 +1,4 @@
 import LetterViewer from "./LetterViewer.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
 import Vue from "vue";
 
 import letterImage1 from "../images/letter-page-1.jpg";
@@ -11,7 +9,10 @@ import letterImage4 from "../images/letter-page-4.jpg";
 import DemoLetterTranscript from "./_mocks/DemoLetterTranscript";
 import DemoAnnotationPage from "./_mocks/DemoAnnotationPage";
 
-export default { title: "LetterViewer" };
+export default { 
+  title: "LetterViewer",
+  component: LetterViewer,
+};
 
 Vue.component("LetterTranscriptFull", {
   components: {
@@ -49,41 +50,36 @@ Vue.component("TranscriptPage4", {
   <p>Eartham<br />Sunday<br />May 6 1792</p></div>`
 });
 
-export const paginatedTranscript = () => ({
-  components: { LetterViewer, DemoAnnotationPage },
-  data: function() {
-    return {
-      manuscriptPageImages: [
-        letterImage1,
-        letterImage2,
-        letterImage3,
-        letterImage4
-      ],
-      transcriptPageComponents: [
-        "TranscriptPage1",
-        "TranscriptPage2",
-        "TranscriptPage3",
-        "TranscriptPage4"
-      ]
-    };
-  },
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LetterViewer },
   template:
-    "<LetterViewer :manuscriptPageImages=manuscriptPageImages :transcriptPageComponents='transcriptPageComponents'></LetterViewer>"
+    '<letter-viewer v-bind="$props" />',
 });
 
-export const fullTranscript = () => ({
-  components: { LetterViewer },
-  data: function() {
-    return {
-      manuscriptPageImages: [
-        letterImage1,
-        letterImage2,
-        letterImage3,
-        letterImage4
-      ],
-      transcriptComponent: "LetterTranscriptFull"
-    };
-  },
-  template:
-    "<LetterViewer :manuscriptPageImages=manuscriptPageImages :transcriptComponent='transcriptComponent'></LetterViewer>"
-});
+export const PaginatedTranscript = Template.bind({});
+PaginatedTranscript.args = {
+  manuscriptPageImages: [
+    letterImage1,
+    letterImage2,
+    letterImage3,
+    letterImage4
+  ],
+  transcriptPageComponents: [
+    "TranscriptPage1",
+    "TranscriptPage2",
+    "TranscriptPage3",
+    "TranscriptPage4"
+  ]
+};
+
+export const FullTranscript = Template.bind({});
+FullTranscript.args = {
+  manuscriptPageImages: [
+    letterImage1,
+    letterImage2,
+    letterImage3,
+    letterImage4
+  ],
+  transcriptComponent: "LetterTranscriptFull",
+};

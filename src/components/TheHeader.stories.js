@@ -1,15 +1,23 @@
-import TheHeader from "./TheHeader.vue";
-import "../css/reset.css";
-import "../css/global-styles.scss";
+import TheHeader from './TheHeader';
 
-export default { title: "TheHeader" };
+export default {
+  title: 'TheHeader',
+  component: TheHeader,
+};
 
-export const regular = () => ({
-  components: { "the-header": TheHeader },
-  template: "<the-header/>"
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TheHeader },
+  template:
+    '<the-header v-bind="$props" />',
 });
 
-export const wide = () => ({
-  components: { "the-header": TheHeader },
-  template: "<the-header wide/>"
-});
+export const Regular = Template.bind({});
+Regular.args = {
+  wide: false,
+};
+
+export const Wide = Template.bind({});
+Wide.args = {
+  wide: true,
+};
